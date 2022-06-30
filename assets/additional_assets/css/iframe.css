@@ -1,0 +1,15 @@
+.lgblueBck{
+    display:none;
+} 
+.container{
+    max-width:100%;
+} 
+body{
+    background: transparent;
+}
+.show-on-website{
+    display: flex !important;
+}
+.hide-on-website{
+    display: none !important;
+}

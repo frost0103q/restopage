@@ -1,0 +1,236 @@
+
+
+.backImg{
+	background: url('../images/background.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	    /*height: 843px;*/
+	    background-position: center;
+}
+.navbar-nav li{
+ 	    padding: 0px 15px !important;
+ }
+ .HiyT{
+ 	    /*word-spacing: 9px;*/
+    letter-spacing: 1px;
+ }
+.nav-item .nav-link{
+	color: white !important;
+	font-weight:500 !important;
+	text-transform: uppercase;
+}
+.marg_btm{
+	    margin-bottom: -80px;
+}
+.W30{
+	width: 30%	
+}
+.margAuto{
+	margin: 0 auto !important; 
+}
+ .colgry{
+ 	color:#7d7d7d;
+
+ }
+ .w_50{
+ 	width: 50%;
+ }
+.lgblueBck{
+	background: #eef4fd;
+}
+.TopHd span{ 
+	color: #e30413 ;
+
+}
+.colRd{
+	color: #e30413 ;
+}
+.backcolRd{
+	background: #e30413 ;
+}
+.fnt500{
+	font-weight: 500
+}
+.fnt700{
+	font-weight: 700
+}
+
+.MnuHed_p{
+    font-size: 12px;
+    color: #7d7d7d;
+    font-weight: 500;
+    word-spacing: 0px;
+    line-height: 1;
+}
+.mnuHedBox{
+	    display: inline-block;
+    box-shadow: 0px 0px 5px 2px #0000003b;
+    padding: 3px;
+    margin-bottom: 20px;
+}
+.redBtn{
+	    background: #e30413;
+    color: white;
+    font-weight: 500;
+        padding: 8px 35px;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+.redBtn:hover{
+	text-transform: uppercase;
+	    background: #ef3541;
+    color: white;
+    font-weight: 500;
+        padding: 8px 35px;
+    border-radius: 30px;
+}
+.whiteBtn{
+	    color: #e30413;
+    background:  white;
+    font-weight: 500;
+        padding: 8px 35px;
+    border-radius: 0px;
+    text-transform: uppercase;
+}
+.whiteBtn:hover{
+	   background : #e30413;
+   color :  white;
+    font-weight: 500;
+        padding: 8px 35px;
+    border-radius: 0px;
+    text-transform: uppercase;
+    border:2px solid white;
+}
+.inpt{
+	    border-radius: 1px;
+    height: 43px;
+    color: #7d7d7d;
+}
+._foothed h5{
+	    font-weight: 700;
+    color: #383838;
+}
+._foothed{
+	    margin-top: 35px;
+}
+._foothed h5:after{
+	
+    content: '';
+    border: 1.2px solid #e30413;
+    width: 44px;
+    position: absolute;
+    left: 17px;
+	top: 67px;
+}
+._foothed a{
+	color: #7d7d7d;
+    font-size: 14px;
+    font-weight: 500;
+}
+._foothed a:hover{
+	color: #e30413;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
+.diBLin{
+	color: #7d7d7d;
+	font-weight: 500;
+	line-height: 1;
+	margin-bottom: 10px
+}
+.diBLin small{
+	padding-left: 10px;
+}
+.fsaaOO{
+	    padding: 44px;
+    text-align: center;
+}
+.W75{
+	    width: 75%;
+}
+.backcolblue{
+	background: #189eda;
+}
+
+.TexT_Rgt{
+	text-align: right;
+}
+.TexT_Lft{
+	text-align: left;
+}
+@media only screen and (max-width: 600px) {
+	.w_50{
+		width: 100%
+	}
+	.marg_btm{
+		margin-bottom: -30px;
+	}
+	.W30{
+		width: 58%	
+	}
+	.TexT_Rgt{
+		text-align: center;
+	}
+	.TexT_Lft{
+		text-align: center;
+	}
+}
+
+
+.text_P{
+	background: #189eda;
+	color: white;
+}
+.text_P:hover{
+	background: #189eda;
+	color: white;
+}
+/*accordian*/
+
+.collapsed{
+	background:white !important;
+	color: black !important;
+}
+.myaccordion {
+  max-width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.myaccordion .card,
+.myaccordion .card:last-child .card-header {
+  border: none;
+}
+
+.myaccordion .card-header {
+  border-bottom-color: #edeff0;
+  background: transparent;
+}
+
+.myaccordion .fa-stack {
+	color: black;
+  font-size: 18px;
+}
+
+.myaccordion .btn {
+  width: 100%;
+  font-weight: bold;
+
+  padding: 0;
+}
+
+.myaccordion .btn-link:hover,
+.myaccordion .btn-link:focus {
+  text-decoration: none;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.myaccordion li + li {
+  margin-top: 10px;
+}
+
+/*.myaccordion .card .show{
+	background: #189eda;
+}*/
