@@ -1786,6 +1786,9 @@ a.social-media-in-footer.text-white {
     font-size: 22px;
     height: 27px;
 }
+.pageSetting-page .close-section-btn.disabled{
+    color: rgb(171, 90, 90);
+}
 .pageSetting-page .close-section-btn:hover{
     color: rgb(171, 90, 90);
 }

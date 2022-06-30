@@ -5784,6 +5784,21 @@
 
 			die(json_encode(array("status"=>1)));
 		}
+		public function removeHomePageSection(){
+			$rest_id = $this->input->post('rest_id');
+			$section_id = $this->input->post('section_id');
+			$sId = $this->input->post('sId');
+			$section_type = $this->input->post('section_type');
+			$sort_table = 'tbl_restaurant_homepage_section_sort';
+			$table = 'tbl_restaurant_homepage_text_sections';
+			if ($section_type == "homepage-text"){
+				$res = $this->db->where('rest_id',$rest_id)->where('section_type',$section_type)->where('section_id',$section_id)->delete($sort_table);
+				$res1 = $this->db->where('sRest_id',$rest_id)->where('sSection_id',$section_id)->delete($table);
+				die(json_encode(array("status"=>$res && $res1)));
+			}else{
+				die(json_encode(array("status"=>1)));
+			}
+		}
 	}
 
 ?>

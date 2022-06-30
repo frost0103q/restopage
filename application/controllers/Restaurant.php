@@ -143,7 +143,9 @@
 			if ($parameter == "Homepage"){
 				$data['is_service_section_exist'] = $this->db->where('rest_id',$this->myRestId)->where('section_id','homepage-my-service')->get('tbl_restaurant_homepage_section_sort')->row();
 				$data['is_welcome_section_exist'] = $this->db->where('rest_id',$this->myRestId)->where('section_id','homepage-welcome')->get('tbl_restaurant_homepage_section_sort')->row();
-				$data['sectionSort']=$this->db->where('rest_id',$this->myRestId)->order_by('sort_num','ASC')->get('tbl_restaurant_homepage_section_sort')->result();
+				$data['sectionSort']=$this->db->query("SELECT * FROM `tbl_restaurant_homepage_section_sort` ss 
+				LEFT JOIN `tbl_restaurant_homepage_text_sections` ts ON ts.`sRest_id` = ss.rest_id AND ts.`sSection_id` = ss.`section_id`
+				ORDER BY ss.`sort_num` ASC")->result();
 
 			}
 
@@ -1601,7 +1603,7 @@
 			// modify by Jfrost in 2nd stage
 			$rest_id = $this->myRestId;
 			$data = array();
-			
+			$section_type = 'homepage-text';
 			$fileUploadingSetting=$this->db->where("option_key","fileUploadingSetting")->get("tbl_admin_option")->row();
 			$update_content_image = $this->input->post("is_update_home_section_img") == "1" ? true : false;
 			$text_section_type = $this->input->post("home_text_section_type");
@@ -1691,6 +1693,7 @@
 				'rest_id'		=> $rest_id,
 				'section_id'	=> $section_id,
 				'sort_num'		=> $sort_num,	
+				'section_type'	=> $section_type,	
 				'is_show_section'	=> $is_show_section,
 			);
 			$responseSort = $this->MODEL->updateHomeSectionSort($sort_content);	

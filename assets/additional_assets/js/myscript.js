@@ -3882,6 +3882,35 @@ $(document).on('click','.multi-lang-page .item-flag',function(){
     $(this).parents(".card").find(".lang-field").addClass("hide-field");
     $(this).parents(".card").find("."+select_lang+"-field").removeClass("hide-field");
 });
+$(document).on('click','.pageSetting-page section .close-section-btn',function(){
+    let current_section = $(this).parents('section');
+    const rest_id = $('footer').attr('data-rest_id');
+    const section_id = current_section.attr('id');
+    const section_type = current_section.attr('data-section_type');
+    const url =  $('footer').attr('data-url') + 'API/removeHomePageSection';
+    let rF = true;
+    current_section.remove();
+    const sId = current_section.find('input[name="sId"]').val();
+    if ('homepage-my-service' !== section_type && 'homepage-welcome' !== section_type && 'undefined' !== sId){
+        rF = false;
+        $.ajax({
+            url:url,
+            type:'post',
+            data:{rest_id:rest_id,section_id:section_id,sId:sId,section_type:section_type},
+            success:function(response){
+                response=JSON.parse(response);
+                if(response.status==1){
+                    rF = true;
+                }else{
+                    swal("Ooops..","Something went wrong","error");
+                }
+            }
+        })
+    }
+    if (rF){
+        swal("Done..","Remove the Section Successfully","success");
+    }
+});
 $(document).on('click','.pageSetting-page section .sort-up-btn',function(){
     rearrangeHomeSection(this,'up');
 });
@@ -4080,7 +4109,6 @@ function enableExternalPlugin_newTag(section_id){
     new Switchery($('#' + section_id + ' input[data-plugin="switchery"]')[0], $('#' + section_id + ' input[data-plugin="switchery"]').data());
     let active_lang = $('.pageSetting-page').attr('data-active_lang');
     $('#' + section_id + ' .lang-field.'+active_lang+'-field').removeClass('hide-field');
-    console.log(active_lang);
     $('.summernote').summernote({ 
         "height": 145, });
     $(".dropify").dropify({messages:{default:"Drag and drop a file here or click",replace:"Drag and drop or click to replace",remove:"Remove",error:"Ooops, something wrong appended."},error:{fileSize:"The file size is too big (1M max)."}});

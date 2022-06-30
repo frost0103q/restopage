@@ -20,94 +20,92 @@
                                 $content_image = "";
                             }
                             $welcome_section = '
-                                <section class="homepage-welcome" id="homepage-welcome" data-sort_id="1">
-                                    <form class="editHomepage" action="'.base_url('Restaurant/editMainPage').'" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="rest_id" value = "'. $myRestId.'">
-                                        <input type="hidden" name="what_setting" value = "homepage">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header py-3 d-flex justify-content-between title-bar">
-                                                <div class="d-flex justify-content-between align-items-center left-bar">
-                                                    <span class="sort-section-btn mr-2 ctrl-btn sort-down-btn">
-                                                        <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-down.svg") .'">
-                                                    </span>
-                                                    <span class="sort-section-btn mr-2 ctrl-btn sort-up-btn">
-                                                        <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-up.svg") .'">
-                                                    </span>
-                                                    <div class="v-splite-line"></div>
-                                                    <input type="checkbox" data-plugin="switchery" name = "is_show_welcome" data-color="#3DDCF7"  '. ( (isset($page_content->is_show_welcome) && $page_content->is_show_welcome == 1) ? "checked" : "" ) .'/>
-                                                    <a class="text-uppercase font-weight-bold j-font-size-18px mx-2" data-toggle="collapse" href="#homepage-welcome-body" role="button" aria-expanded="true" aria-controls="homepage-welcome-body">Welcome</a>
+                                <form class="editHomepage" action="'.base_url('Restaurant/editMainPage').'" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="rest_id" value = "'. $myRestId.'">
+                                    <input type="hidden" name="what_setting" value = "homepage">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3 d-flex justify-content-between title-bar">
+                                            <div class="d-flex justify-content-between align-items-center left-bar">
+                                                <span class="sort-section-btn mr-2 ctrl-btn sort-down-btn">
+                                                    <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-down.svg") .'">
+                                                </span>
+                                                <span class="sort-section-btn mr-2 ctrl-btn sort-up-btn">
+                                                    <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-up.svg") .'">
+                                                </span>
+                                                <div class="v-splite-line"></div>
+                                                <input type="checkbox" data-plugin="switchery" name = "is_show_welcome" data-color="#3DDCF7"  '. ( (isset($page_content->is_show_welcome) && $page_content->is_show_welcome == 1) ? "checked" : "" ) .'/>
+                                                <a class="text-uppercase font-weight-bold j-font-size-18px mx-2" data-toggle="collapse" href="#homepage-welcome-body" role="button" aria-expanded="true" aria-controls="homepage-welcome-body">Welcome</a>
+                                            </div>
+                                            <div class="right-bar">
+                                                <div class="lang-bar">
+                                                    <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'english' ? 'active' : '')  .' item-flag" data-flag="english"><img class="english-flag" src="'. base_url('assets/flags/en-flag.png').'"></span>
+                                                    <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'french' ? 'active' : '')  .' item-flag" data-flag="french"><img class="french-flag" src="'. base_url('assets/flags/fr-flag.png').'"></span>
+                                                    <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'germany' ? 'active' : '')  .' item-flag" data-flag="germany"><img class="germany-flag" src="'. base_url('assets/flags/ge-flag.png').'"></span>
                                                 </div>
-                                                <div class="right-bar">
-                                                    <div class="lang-bar">
-                                                        <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'english' ? 'active' : '')  .' item-flag" data-flag="english"><img class="english-flag" src="'. base_url('assets/flags/en-flag.png').'"></span>
-                                                        <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'french' ? 'active' : '')  .' item-flag" data-flag="french"><img class="french-flag" src="'. base_url('assets/flags/fr-flag.png').'"></span>
-                                                        <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'germany' ? 'active' : '')  .' item-flag" data-flag="germany"><img class="germany-flag" src="'. base_url('assets/flags/ge-flag.png').'"></span>
+                                                <div class="v-splite-line hide-field"></div>
+                                                <span class="close-section-btn hide-field">
+                                                    <i class="fa fa-times-circle"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body collapse show" id="homepage-welcome-body">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 text-center section_heading_label">'. $this->lang->line('Section Heading') .'</label>
+                                                <div class="input-group french-field hide-field col-md-8 lang-field">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
                                                     </div>
-                                                    <div class="v-splite-line"></div>
-                                                    <span class="close-section-btn">
-                                                        <i class="fa fa-times-circle"></i>
-                                                    </span>
+                                                    <input type="text" class="form-control" name="section_heading_french" placeholder="Welcome" value="'. (isset($page_content->section_heading_french) ? $page_content->section_heading_french : "") .'">
+                                                </div>
+                                                <div class="input-group germany-field hide-field col-md-8 lang-field">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="section_heading_germany" placeholder="Welcome" value="'.(isset($page_content->section_heading_germany) ? $page_content->section_heading_germany:"").'">
+                                                </div>
+                                                <div class="input-group english-field hide-field col-md-8 lang-field">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="section_heading_english" placeholder="Welcome" value="'.(isset($page_content->section_heading_english) ? $page_content->section_heading_english:"").'">
                                                 </div>
                                             </div>
-                                            <div class="card-body collapse show" id="homepage-welcome-body">
-                                                <div class="form-group row">
-                                                    <label class="col-md-4 text-center section_heading_label">'. $this->lang->line('Section Heading') .'</label>
-                                                    <div class="input-group french-field hide-field col-md-8 lang-field">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
-                                                        </div>
-                                                        <input type="text" class="form-control" name="section_heading_french" placeholder="Welcome" value="'. (isset($page_content->section_heading_french) ? $page_content->section_heading_french : "") .'">
-                                                    </div>
-                                                    <div class="input-group germany-field hide-field col-md-8 lang-field">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
-                                                        </div>
-                                                        <input type="text" class="form-control" name="section_heading_germany" placeholder="Welcome" value="'.(isset($page_content->section_heading_germany) ? $page_content->section_heading_germany:"").'">
-                                                    </div>
-                                                    <div class="input-group english-field hide-field col-md-8 lang-field">
+                                            <div class="form-group row">
+                                                <div class="col-md-4 update-image">
+                                                    
+                                                    <input type="file" class="dropify" name="content_img" data-slider-index="_content" data-default-file = "'. $content_image .'" value = "'. $content_image .'"/>
+    
+                                                    <input type="hidden" name="is_update_content" value = "'. ($content_image == "" ? "1" : "0").'" />
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="input-group english-field hide-field content-editor lang-field">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
                                                         </div>
-                                                        <input type="text" class="form-control" name="section_heading_english" placeholder="Welcome" value="'.(isset($page_content->section_heading_english) ? $page_content->section_heading_english:"").'">
+                                                        <textarea class="summernote form-control" name="page_content_english"  placeholder ="'. $this->lang->line('Item Description').'">'. (isset($page_content) ? $page_content->content_english : "").'</textarea>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-md-4 update-image">
-                                                        
-                                                        <input type="file" class="dropify" name="content_img" data-slider-index="_content" data-default-file = "'. $content_image .'" value = "'. $content_image .'"/>
-        
-                                                        <input type="hidden" name="is_update_content" value = "'. ($content_image == "" ? "1" : "0").'" />
+                                                    <div class="input-group french-field hide-field content-editor lang-field">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
+                                                        </div>
+                                                        <textarea class="summernote form-control" name="page_content_french"  placeholder ="'. $this->lang->line('Item Description').'" >'. (isset($page_content) ? $page_content->content_french : "") .'</textarea>
                                                     </div>
-                                                    <div class="col-md-8">
-                                                        <div class="input-group english-field hide-field content-editor lang-field">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
-                                                            </div>
-                                                            <textarea class="summernote form-control" name="page_content_english"  placeholder ="'. $this->lang->line('Item Description').'">'. (isset($page_content) ? $page_content->content_english : "").'</textarea>
+                                                    <div class="input-group germany-field hide-field content-editor lang-field">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
                                                         </div>
-                                                        <div class="input-group french-field hide-field content-editor lang-field">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
-                                                            </div>
-                                                            <textarea class="summernote form-control" name="page_content_french"  placeholder ="'. $this->lang->line('Item Description').'" >'. (isset($page_content) ? $page_content->content_french : "") .'</textarea>
-                                                        </div>
-                                                        <div class="input-group germany-field hide-field content-editor lang-field">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
-                                                            </div>
-                                                            <textarea class="summernote form-control" name="page_content_germany" placeholder ="'. $this->lang->line('Item Description').'" >'. (isset($page_content) ? $page_content->content_germany : "").'</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12 mx-auto mb-3 mb-sm-0">
-                                                        <input type="submit" name="" value="'. $this->lang->line('SAVE') .'" class="btn btn-danger btn-user btn-block submit-btn">
+                                                        <textarea class="summernote form-control" name="page_content_germany" placeholder ="'. $this->lang->line('Item Description').'" >'. (isset($page_content) ? $page_content->content_germany : "").'</textarea>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12 mx-auto mb-3 mb-sm-0">
+                                                    <input type="submit" name="" value="'. $this->lang->line('SAVE') .'" class="btn btn-danger btn-user btn-block submit-btn">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </form>
-                                </section>
+                                    </div>
+                                </form>
                             ';
 
                             if ($page_content && $page_content->service_section_background !== ""){
@@ -135,23 +133,171 @@
                                 } 
                             }
                             $service_section = '
-                                <section class="homepage-my-service" id="homepage-my-service" data-sort_id="2">
-                                    <form class="editHomepage" action="'.base_url('Restaurant/editMainPage').'" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="rest_id" value = "'. $myRestId.'">
-                                        <input type="hidden" name="what_setting" value = "homepage">
+                                <form class="editHomepage" action="'.base_url('Restaurant/editMainPage').'" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="rest_id" value = "'. $myRestId.'">
+                                    <input type="hidden" name="what_setting" value = "homepage">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3 d-flex justify-content-between title-bar">
+                                            <div class="d-flex justify-content-between align-items-center left-bar">
+                                                <span class="sort-section-btn mr-2 ctrl-btn sort-down-btn">
+                                                    <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-down.svg") .'">
+                                                </span>
+                                                <span class="sort-section-btn mr-2 ctrl-btn sort-up-btn">
+                                                    <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-up.svg") .'">
+                                                </span>
+                                                <div class="v-splite-line"></div>
+                                                <input type="checkbox" data-plugin="switchery" name = "is_show_service" data-color="#3DDCF7"   '.($page_content && $page_content->is_show_service == 1 ? "checked" : "") .'/>
+                                                <a class="text-uppercase font-weight-bold j-font-size-18px mx-2" data-toggle="collapse" href="#homepage-my-service-body" role="button" aria-expanded="true" aria-controls="homepage-my-service-body">My Services</a>
+                                                <span class="j-font-size-13px">(Click on the different buttons, to activate)</span>
+                                            </div>
+                                            <div class="right-bar">
+                                                <div class="lang-bar">
+                                                    <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'english' ? 'active' : '')  .' item-flag" data-flag="english"><img class="english-flag" src="'. base_url('assets/flags/en-flag.png').'"></span>
+                                                    <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'french' ? 'active' : '')  .' item-flag" data-flag="french"><img class="french-flag" src="'. base_url('assets/flags/fr-flag.png').'"></span>
+                                                    <span class="'. (explode(",",$this->myRestDetail->website_languages)[0] == 'germany' ? 'active' : '')  .' item-flag" data-flag="germany"><img class="germany-flag" src="'. base_url('assets/flags/ge-flag.png').'"></span>
+                                                </div>
+                                                <div class="v-splite-line hide-field"></div>
+                                                <span class="close-section-btn hide-field">
+                                                    <i class="fa fa-times-circle"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body collapse show" id="homepage-my-service-body">
+                                            <div class="form-group row my-4">
+                                                <div class="col-md-4 update-service_section_background">
+                                                    
+                                                    <input type="file" class="dropify" name="service_section_background" data-default-file = "'. $service_section_background .'" value = "'. $service_section_background .'"/>
+
+                                                    <input type="hidden" name="is_update_service_section_background" value = "'. ($service_section_background == "" ? "1" : "0").'" />
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 text-center">'. $this->lang->line('Service Top Subject').'</label>
+                                                        <div class="input-group french-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_top_subject_french" placeholder="EXPÉRIENCE" value="'. (isset($page_content->service_top_subject_french) ? $page_content->service_top_subject_french : "") .'">
+                                                        </div>
+                                                        <div class="input-group germany-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_top_subject_germany" placeholder="ERFAHRUNG" value="'. (isset($page_content->service_top_subject_germany) ? $page_content->service_top_subject_germany:"") .'">
+                                                        </div>
+                                                        <div class="input-group english-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_top_subject_english" placeholder="EXPERIENCE" value="'. (isset($page_content->service_top_subject_english) ? $page_content->service_top_subject_english:"") .'">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 text-center">'. $this->lang->line('Service Main Subject').'</label>
+                                                        <div class="input-group french-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_main_subject_french" placeholder="NOTRE SERVICE" value="'. (isset($page_content->service_main_subject_french) ? $page_content->service_main_subject_french:"" ).'">
+                                                        </div>
+                                                        <div class="input-group germany-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_main_subject_germany" placeholder="UNSER SERVICE" value="'. (isset($page_content->service_main_subject_germany) ? $page_content->service_main_subject_germany:"") .'">
+                                                        </div>
+                                                        <div class="input-group english-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_main_subject_english" placeholder="OUR SERVICE" value="'. (isset($page_content->service_main_subject_english) ? $page_content->service_main_subject_english:"") .'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 text-center">'. $this->lang->line('Service Description').'</label>
+                                                        <div class="input-group french-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_description_french" placeholder="LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM CONVALLIS ELEIFEND AUGUE, ID CONSEQUAT EX DICTUM AT." value="'. (isset($page_content->service_description_french) ?$page_content->service_description_french:"") .'">
+                                                        </div>
+                                                        <div class="input-group germany-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_description_germany" placeholder="LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM CONVALLIS ELEIFEND AUGUE, ID CONSEQUAT EX DICTUM AT." value="'. (isset($page_content->service_description_germany) ?$page_content->service_description_germany : "") .'">
+                                                        </div>
+                                                        <div class="input-group english-field hide-field col-md-8 lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="service_description_english" placeholder="LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM CONVALLIS ELEIFEND AUGUE, ID CONSEQUAT EX DICTUM AT." value="'. (isset($page_content->service_description_english) ?$page_content->service_description_english:"") .'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                '.$service_items_part.'
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            ';
+                            
+                        ?>
+                        <?php if (! $is_welcome_section_exist){ ?> 
+                            <!-- Welcome Section -->
+                            <section class="homepage-welcome" id="homepage-welcome" data-sort_id="1" data-section_type="homepage-welcome">
+                            <?= $welcome_section ?>
+                            </section>
+                        <?php } ?>
+                        <?php if (! $is_service_section_exist){ ?> 
+                            <!-- My services Section -->
+                            <section class="homepage-my-service" id="homepage-my-service" data-sort_id="2" data-section_type="homepage-my-service">
+                            <?= $service_section ?>
+                            </section>
+                        <?php } ?>
+                        <?php foreach ($sectionSort as $skey => $svalue) { 
+                            if ($svalue->section_id == "homepage-welcome"){ ?>
+                                <section class="homepage-welcome" id="homepage-welcome" data-sort_id="<?=$svalue->sort_num?>" data-section_type="homepage-welcome">
+                                    <?= $welcome_section ?>
+                                </section>
+                            <?php }else if ($svalue->section_id == "homepage-my-service"){ ?>
+                                <section class="homepage-my-service" id="homepage-my-service" data-sort_id="<?=$svalue->sort_num?>" data-section_type="homepage-my-service">
+                                <?= $service_section ?>
+                                </section>
+                            <?php }else if ($svalue->section_type == "homepage-text"){
+                                $active_lang = explode(",",$this->myRestDetail->website_languages)[0];
+                                $_label = $active_lang . "_content";
+                                $section_id = $svalue->section_id;
+                                $sort_num = $svalue->sort_num;
+                                $text_section_type = $svalue->sType; 
+                                $section_heading_label = isset(json_decode($svalue->sHeading)->$_label) ? json_decode($svalue->sHeading)->$_label : json_decode($svalue->sHeading)->content;
+                                $url = base_url();
+                                if (isset($svalue->sImage) && $svalue->sImage !== ""){
+                                    $content_image = base_url("assets/home_images/").$svalue->sImage;
+                                }else{
+                                    $content_image = "";
+                                }
+                                $text_section = '
+                                    <form class="updateHomepageTextSection" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="home_text_section_type" value="'.$text_section_type.'">
+                                        <input type="hidden" name="sort_num" value="'.$sort_num.'">
+                                        <input type="hidden" name="section_id" value="'.$section_id.'">
+                                        <input type="hidden" name="sId" value="'.$svalue->sId.'">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3 d-flex justify-content-between title-bar">
                                                 <div class="d-flex justify-content-between align-items-center left-bar">
                                                     <span class="sort-section-btn mr-2 ctrl-btn sort-down-btn">
-                                                        <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-down.svg") .'">
+                                                        <img class="tar-icon" src="'.$url.'assets/additional_assets/svg/arrow-alt-down.svg">
                                                     </span>
                                                     <span class="sort-section-btn mr-2 ctrl-btn sort-up-btn">
-                                                        <img class="tar-icon" src="'. base_url("assets/additional_assets/svg/arrow-alt-up.svg") .'">
+                                                        <img class="tar-icon" src="'.$url.'assets/additional_assets/svg/arrow-alt-up.svg">
                                                     </span>
                                                     <div class="v-splite-line"></div>
-                                                    <input type="checkbox" data-plugin="switchery" name = "is_show_service" data-color="#3DDCF7"   '.($page_content && $page_content->is_show_service == 1 ? "checked" : "") .'/>
-                                                    <a class="text-uppercase font-weight-bold j-font-size-18px mx-2" data-toggle="collapse" href="#homepage-my-service-body" role="button" aria-expanded="true" aria-controls="homepage-my-service-body">My Services</a>
-                                                    <span class="j-font-size-13px">(Click on the different buttons, to activate)</span>
+                                                    <input type="checkbox" data-plugin="switchery" name = "is_show_section" data-color="#3DDCF7" '. ( (isset($svalue->is_show_section) && $svalue->is_show_section == 1) ? "checked" : "" ) .'/>
+                                                    <a class="section_title text-uppercase font-weight-bold j-font-size-18px mx-2" data-toggle="collapse" href="#'.$section_id.'-body" role="button" aria-expanded="true" aria-controls="'.$section_id.'-body">'.$section_heading_label.'</a>
                                                 </div>
                                                 <div class="right-bar">
                                                     <div class="lang-bar">
@@ -165,106 +311,136 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="card-body collapse show" id="homepage-my-service-body">
-                                                <div class="form-group row my-4">
-                                                    <div class="col-md-4 update-service_section_background">
-                                                        
-                                                        <input type="file" class="dropify" name="service_section_background" data-default-file = "'. $service_section_background .'" value = "'. $service_section_background .'"/>
+                                            <div class="card-body collapse show" id="'.$section_id.'-body">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 text-center">'.$this->lang->line("Section Heading").'</label>
+                                                    <div class="input-group french-field hide-field col-md-8 lang-field">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/fr-flag.png"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control home_section_heading" name="section_heading_french" placeholder="Welcome" value="'.(isset(json_decode($svalue->sHeading)->french_content) ? json_decode($svalue->sHeading)->french_content : json_decode($svalue->sHeading)->content).'">
+                                                    </div>
+                                                    <div class="input-group germany-field hide-field col-md-8 lang-field">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/ge-flag.png"></span>
+                                                        </div>
+                                                        <input type="text" class="form-control home_section_heading" name="section_heading_germany" placeholder="Welcome" value="'.(isset(json_decode($svalue->sHeading)->germany_content) ? json_decode($svalue->sHeading)->germany_content : json_decode($svalue->sHeading)->content).'">
+                                                    </div>
+                                                    <div class="input-group english-field hide-field col-md-8 lang-field">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/en-flag.png">
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control home_section_heading" name="section_heading_english" placeholder="Welcome" value="'.(isset(json_decode($svalue->sHeading)->english_content) ? json_decode($svalue->sHeading)->english_content : json_decode($svalue->sHeading)->content).'">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-4 update-image">
+                                                        <input type="file" class="dropify" name="home_section_img" data-default-file = "'. $content_image .'" value = "'. $content_image .'"/>
 
-                                                        <input type="hidden" name="is_update_service_section_background" value = "'. ($service_section_background == "" ? "1" : "0").'" />
+                                                        <input type="hidden" name="is_update_home_section_img" value = "" />
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <div class="form-group row">
-                                                            <label class="col-md-4 text-center">'. $this->lang->line('Service Top Subject').'</label>
-                                                            <div class="input-group french-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_top_subject_french" placeholder="EXPÉRIENCE" value="'. (isset($page_content->service_top_subject_french) ? $page_content->service_top_subject_french : "") .'">
+                                                        <div class="input-group english-field hide-field content-editor lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/en-flag.png"></span>
                                                             </div>
-                                                            <div class="input-group germany-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_top_subject_germany" placeholder="ERFAHRUNG" value="'. (isset($page_content->service_top_subject_germany) ? $page_content->service_top_subject_germany:"") .'">
-                                                            </div>
-                                                            <div class="input-group english-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_top_subject_english" placeholder="EXPERIENCE" value="'. (isset($page_content->service_top_subject_english) ? $page_content->service_top_subject_english:"") .'">
-                                                            </div>
-                                                            
+                                                            <textarea class="summernote form-control home_section_content" name="page_content_english">'.(isset(json_decode($svalue->sDescription)->english_content) ? json_decode($svalue->sDescription)->english_content : json_decode($svalue->sDescription)->content).'</textarea>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-4 text-center">'. $this->lang->line('Service Main Subject').'</label>
-                                                            <div class="input-group french-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_main_subject_french" placeholder="NOTRE SERVICE" value="'. (isset($page_content->service_main_subject_french) ? $page_content->service_main_subject_french:"" ).'">
+                                                        <div class="input-group french-field hide-field content-editor lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/fr-flag.png"></span>
                                                             </div>
-                                                            <div class="input-group germany-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_main_subject_germany" placeholder="UNSER SERVICE" value="'. (isset($page_content->service_main_subject_germany) ? $page_content->service_main_subject_germany:"") .'">
-                                                            </div>
-                                                            <div class="input-group english-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_main_subject_english" placeholder="OUR SERVICE" value="'. (isset($page_content->service_main_subject_english) ? $page_content->service_main_subject_english:"") .'">
-                                                            </div>
+                                                            <textarea class="summernote form-control home_section_content" name="page_content_french">'.(isset(json_decode($svalue->sDescription)->french_content) ? json_decode($svalue->sDescription)->french_content : json_decode($svalue->sDescription)->content).'</textarea>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-md-4 text-center">'. $this->lang->line('Service Description').'</label>
-                                                            <div class="input-group french-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/fr-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_description_french" placeholder="LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM CONVALLIS ELEIFEND AUGUE, ID CONSEQUAT EX DICTUM AT." value="'. (isset($page_content->service_description_french) ?$page_content->service_description_french:"") .'">
+                                                        <div class="input-group germany-field hide-field content-editor lang-field">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/ge-flag.png"></span>
                                                             </div>
-                                                            <div class="input-group germany-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/ge-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_description_germany" placeholder="LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM CONVALLIS ELEIFEND AUGUE, ID CONSEQUAT EX DICTUM AT." value="'. (isset($page_content->service_description_germany) ?$page_content->service_description_germany : "") .'">
-                                                            </div>
-                                                            <div class="input-group english-field hide-field col-md-8 lang-field">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'. base_url('assets/flags/en-flag.png').'" ></span>
-                                                                </div>
-                                                                <input type="text" class="form-control" name="service_description_english" placeholder="LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM CONVALLIS ELEIFEND AUGUE, ID CONSEQUAT EX DICTUM AT." value="'. (isset($page_content->service_description_english) ?$page_content->service_description_english:"") .'">
-                                                            </div>
+                                                            <textarea class="summernote form-control home_section_content" name="page_content_germany">'.(isset(json_decode($svalue->sDescription)->germany_content) ? json_decode($svalue->sDescription)->germany_content : json_decode($svalue->sDescription)->content).'</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    '.$service_items_part.'
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12 mx-auto mb-3 mb-sm-0">
+                                                        <input type="submit" name="" value="SAVE" class="btn btn-danger btn-user btn-block submit-btn">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
+                                '; ?>
+                                <section class="homepage-text" id="<?=$section_id?>" data-sort_id="<?=$sort_num?>" data-section_type="homepage-text">
+                                <?= $text_section ?>
                                 </section>
-                            ';
-                            
-                        ?>
-                        <?php if (! $is_welcome_section_exist){ ?> 
-                            <!-- Welcome Section -->
-                            <?= $welcome_section ?>
-                        <?php } ?>
-                        <?php if (! $is_service_section_exist){ ?> 
-                            <!-- My services Section -->
-                            <?= $service_section ?>
-                        <?php } ?>
-                        <?php foreach ($sectionSort as $skey => $svalue) { 
-                            if ($svalue->section_id == "homepage-welcome"){ ?>
-                                <?= $welcome_section ?>
-                            <?php }else if ($svalue->section_id == "homepage-my-service"){ ?>
-                                <?= $service_section ?>
+                            <?php }else if ($svalue->section_type == "homepage-gallery"){ ?>
+
                             <?php }
                         } ?>
+                        <section class="homepage-gallery" id="homepage-gallery-4" data-sort_id="4" data-section_type="homepage-gallery">
+                            <form class="updateHomepageGallerySection" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="sort_num" value="">
+                                <input type="hidden" name="section_id" value="">
+                                <input type="hidden" name="sId" value="">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3 d-flex justify-content-between title-bar">
+                                        <div class="d-flex justify-content-between align-items-center left-bar">
+                                            <span class="sort-section-btn mr-2 ctrl-btn sort-down-btn">
+                                                <img class="tar-icon" src="'.$url.'assets/additional_assets/svg/arrow-alt-down.svg">
+                                            </span>
+                                            <span class="sort-section-btn mr-2 ctrl-btn sort-up-btn">
+                                                <img class="tar-icon" src="'.$url.'assets/additional_assets/svg/arrow-alt-up.svg">
+                                            </span>
+                                            <div class="v-splite-line"></div>
+                                            <input type="checkbox" data-plugin="switchery" name = "is_show_section" data-color="#3DDCF7"/>
+                                            <a class="section_title text-uppercase font-weight-bold j-font-size-18px mx-2" data-toggle="collapse" href="#homepage-gallery-4-body" role="button" aria-expanded="true" aria-controls="homepage-gallery-4-body">unnamed</a>
+                                        </div>
+                                        <div class="right-bar">
+                                            <div class="lang-bar">
+                                            </div>
+                                            <div class="v-splite-line"></div>
+                                            <span class="close-section-btn">
+                                                <i class="fa fa-times-circle"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse show" id="'.$section_id.'-body">
+                                        <div class="form-group row">
+                                            <div class="col-md-4 update-image">
+                                                <input type="file" class="dropify" name="home_section_img" data-default-file = "'. $content_image .'" value = "'. $content_image .'"/>
+
+                                                <input type="hidden" name="is_update_home_section_img" value = "" />
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="input-group english-field hide-field content-editor lang-field">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/en-flag.png"></span>
+                                                    </div>
+                                                    <textarea class="summernote form-control home_section_content" name="page_content_english">'.(isset(json_decode($svalue->sDescription)->english_content) ? json_decode($svalue->sDescription)->english_content : json_decode($svalue->sDescription)->content).'</textarea>
+                                                </div>
+                                                <div class="input-group french-field hide-field content-editor lang-field">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/fr-flag.png"></span>
+                                                    </div>
+                                                    <textarea class="summernote form-control home_section_content" name="page_content_french">'.(isset(json_decode($svalue->sDescription)->french_content) ? json_decode($svalue->sDescription)->french_content : json_decode($svalue->sDescription)->content).'</textarea>
+                                                </div>
+                                                <div class="input-group germany-field hide-field content-editor lang-field">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><img class="img-profile rounded-circle active-flag" src="'.$url.'assets/flags/ge-flag.png"></span>
+                                                    </div>
+                                                    <textarea class="summernote form-control home_section_content" name="page_content_germany">'.(isset(json_decode($svalue->sDescription)->germany_content) ? json_decode($svalue->sDescription)->germany_content : json_decode($svalue->sDescription)->content).'</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 mx-auto mb-3 mb-sm-0">
+                                                <input type="submit" name="" value="SAVE" class="btn btn-danger btn-user btn-block submit-btn">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
                         <section class="new_section">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3 d-flex justify-content-center">
