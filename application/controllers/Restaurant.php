@@ -145,8 +145,8 @@
 				$data['is_welcome_section_exist'] = $this->db->where('rest_id',$this->myRestId)->where('section_id','homepage-welcome')->get('tbl_restaurant_homepage_section_sort')->row();
 				$data['sectionSort']=$this->db->query("SELECT * FROM `tbl_restaurant_homepage_section_sort` ss 
 				LEFT JOIN `tbl_restaurant_homepage_text_sections` ts ON ts.`sRest_id` = ss.rest_id AND ts.`sSection_id` = ss.`section_id`
+				LEFT JOIN `tbl_restaurant_homepage_gallery_sections` gs ON gs.`gRest_id` = ss.rest_id AND gs.`gSection_id` = ss.`section_id`
 				ORDER BY ss.`sort_num` ASC")->result();
-
 			}
 
 			$data['page_content']=$this->db->where('rest_id',$this->myRestId)->get('tbl_page_contents')->row();
@@ -1426,6 +1426,7 @@
 							// "slider_caption_content"	=> $this->input->post($caption_content_name."_english"),
 						);
 						$data_content = array(
+							"is_show_slider"  				=> $this->input->post('is_show_slider') == "on" ? 1 : 0,
 							"slider_overlay_color"  		=> $this->input->post('slider_overlay_color'),
 							"slider_overlay_alpha"  		=> $this->input->post('slider_overlay_alpha'),
 							"slider_duration"  				=> $this->input->post('slider_duration'),
@@ -1621,16 +1622,30 @@
 				$max_height = 0;
 				$compression = 80;
 			}
-
-			if (file_exists($_FILES["home_section_img"]['tmp_name']) || is_uploaded_file($_FILES["home_section_img"]['tmp_name'])){
-				$imageArray=pathinfo($_FILES["home_section_img"]['name']);
-				$source_img = $_FILES["home_section_img"]['tmp_name'];
-				$content_image = 'Top-Resto-home'."-".date('dmyhis').'.'.$imageArray['extension'];
-
-				$destination_img='assets/home_images/'."$content_image";
-				$this->compress($source_img, $destination_img, $compression,$max_width,$max_height,false);
+			if ($text_section_type == 3){
+				for ($si=0; $si < 4; $si++) { 
+					if (file_exists($_FILES["home_section_img".$si]['tmp_name']) || is_uploaded_file($_FILES["home_section_img".$si]['tmp_name'])){
+						$imageArray=pathinfo($_FILES["home_section_img".$si]['name']);
+						$source_img = $_FILES["home_section_img".$si]['tmp_name'];
+						$content_4images[$si] = 'Top-Resto-home'."-".date('dmyhis').$si.'.'.$imageArray['extension'];
+		
+						$destination_img='assets/home_images/'.$content_4images[$si];
+						$this->compress($source_img, $destination_img, $compression,$max_width,$max_height,false);
+					}else{
+						$content_4images[$si] = "";
+					}
+				}
 			}else{
-				$content_image = "";
+				if (file_exists($_FILES["home_section_img"]['tmp_name']) || is_uploaded_file($_FILES["home_section_img"]['tmp_name'])){
+					$imageArray=pathinfo($_FILES["home_section_img"]['name']);
+					$source_img = $_FILES["home_section_img"]['tmp_name'];
+					$content_image = 'Top-Resto-home'."-".date('dmyhis').'.'.$imageArray['extension'];
+	
+					$destination_img='assets/home_images/'.$content_image;
+					$this->compress($source_img, $destination_img, $compression,$max_width,$max_height,false);
+				}else{
+					$content_image = "";
+				}
 			}
 
 			$content = "";
@@ -1670,24 +1685,49 @@
 				'sSection_id'					=> $section_id,
 				"sType"							=> (null !== $this->input->post('home_text_section_type')) ? $this->input->post('home_text_section_type') : 1,
 			);
-			if ($update_content_image || (file_exists($_FILES["home_section_img"]['tmp_name']) || is_uploaded_file($_FILES["home_section_img"]['tmp_name']))){
-				$data_content["sImage"]= $content_image;
-				$ciF = true;
+
+			$text_section_row = $this->db->where('sId',$sId)->get("tbl_restaurant_homepage_text_sections")->row();
+			if ($text_section_type == 3){
+				$c_image = array();
+				for ($si=0; $si < 4; $si++) { 
+					$update_content_image = $this->input->post("is_update_home_section_img".$si) == "1" ? true : false;
+					if ($update_content_image || (file_exists($_FILES["home_section_img".$si]['tmp_name']) || is_uploaded_file($_FILES["home_section_img".$si]['tmp_name']))){
+						$ciF = true;
+					}else{
+						if ($update_content_image){
+							$ciF = true;
+							$content_4images[$si] = "";
+						}else{
+							$ciF = false;
+							$content_4images[$si] = json_decode($text_section_row->sImage)[$si];
+						}
+					}
+					if ($text_section_row && $ciF && json_decode($text_section_row->sImage)[$si] !== ""){
+						if (file_exists(APPPATH."../assets/home_images/".json_decode($text_section_row->sImage)[$si])){
+							unlink(APPPATH."../assets/home_images/".json_decode($text_section_row->sImage)[$si]);
+						}
+					}
+				}
+				$data_content["sImage"]= json_encode($content_4images);
 			}else{
-				if ($update_content_image){
+				if ($update_content_image || (file_exists($_FILES["home_section_img"]['tmp_name']) || is_uploaded_file($_FILES["home_section_img"]['tmp_name']))){
+					$data_content["sImage"]= $content_image;
 					$ciF = true;
-					$data_content["sImage"] = "";
 				}else{
-					$ciF = false;
+					if ($update_content_image){
+						$ciF = true;
+					}else{
+						$ciF = false;
+					}
+					$data_content["sImage"] = "";
+				}
+				if ($text_section_row && $ciF){
+					if (file_exists(APPPATH."../assets/home_images/".$text_section_row->sImage)){
+						unlink(APPPATH."../assets/home_images/".$text_section_row->sImage);
+					}
 				}
 			}
 
-			$text_section_row = $this->db->where('sId',$sId)->get("tbl_restaurant_homepage_text_sections")->row();
-			if ($text_section_row && $ciF){
-				if (file_exists(APPPATH."../assets/home_images/".$homepage_services->content_image)){
-					unlink(APPPATH."../assets/home_images/".$homepage_services->content_image);
-				}
-			}
 			$response = $this->MODEL->updateHomeTextSectionContent($data_content,$sId);	
 			$sort_content = array(
 				'rest_id'		=> $rest_id,
@@ -1698,6 +1738,102 @@
 			);
 			$responseSort = $this->MODEL->updateHomeSectionSort($sort_content);	
 			die(json_encode(array("status"=>$response && $responseSort,"is_show"=>$this->input->post('is_show_section') )));
+		}
+		public function updateHomepageGallerySection(){
+			// modify by Jfrost in 2nd stage
+			$rest_id = $this->myRestId;
+			$data = array();
+			$section_type = 'homepage-gallery';
+			$fileUploadingSetting=$this->db->where("option_key","fileUploadingSetting")->get("tbl_admin_option")->row();
+			$gId = $this->input->post("gId");
+			$sort_num = $this->input->post("sort_num");
+			$section_id = $this->input->post("section_id");
+			$is_show_section = $this->input->post('is_show_section') == "on" ? '1' : '0';
+			$home_gallery_text = $this->input->post("home_gallery_text");
+			$is_update_gallery_img = $this->input->post("is_update_gallery_img");
+			$home_gallery_old_img = $this->input->post("gallery_old_img");
+			if (isset($fileUploadingSetting)){
+				$fileUploadingSetting = json_decode($fileUploadingSetting->option_value);
+				$max_width = $fileUploadingSetting->homepage_service->max_width;
+				$max_height = $fileUploadingSetting->homepage_service->max_height;
+				$compression = $fileUploadingSetting->homepage_service->compression;
+			} else{
+				$max_width = 0;
+				$max_height = 0;
+				$compression = 80;
+			}
+			$gGalleryJson = array();
+			$reuseImgList = array();
+			foreach ($home_gallery_text as $gkey => $gtext) {
+				$gisupdate = $is_update_gallery_img[$gkey];
+				if (file_exists($_FILES["home_gallery_img"]['tmp_name'][$gkey]) || is_uploaded_file($_FILES["home_gallery_img"]['tmp_name'][$gkey])){
+					$imageArray=pathinfo($_FILES["home_gallery_img"]['name'][$gkey]);
+					$source_img = $_FILES["home_gallery_img"]['tmp_name'][$gkey];
+					$content_image[$gkey] = 'Top-Resto-home-gallery'."-".date('dmyhis').'.'.$imageArray['extension'];
+	
+					$destination_img='assets/home_images/gallery/'.$content_image[$gkey];
+					$this->compress($source_img, $destination_img, $compression,$max_width,$max_height,false);
+				}else{
+					if ($home_gallery_old_img[$gkey] !== ""){
+						$content_image[$gkey] = $home_gallery_old_img[$gkey];
+						$reuseImgList[] = $home_gallery_old_img[$gkey];
+					}else{
+						$content_image[$gkey] = "";
+					}
+				}
+				$gGalleryJson[] = array(
+					'img' 	=> $content_image[$gkey],
+					'txt'	=> $gtext
+				);
+			}
+
+			
+			$section_heading = "";
+			if ($this->input->post('section_heading_english') !== ""){
+				$section_heading =  $this->input->post('section_heading_english');
+				$gHeadingJson['english_content'] = $section_heading;
+			}
+			if ($this->input->post('section_heading_germany') !== ""){
+				$section_heading =  $this->input->post('section_heading_germany');
+				$gHeadingJson['germany_content'] = $section_heading;
+			}
+			if ($this->input->post('section_heading_french') !== ""){
+				$section_heading =  $this->input->post('section_heading_french');
+				$gHeadingJson['french_content'] = $section_heading;
+			}
+			$gHeadingJson['content'] = $section_heading;
+
+			$data_content= array(
+				"gRest_id"						=> $rest_id,
+				'gSection_id'					=> $section_id,
+				"gHeading"   					=> json_encode($gHeadingJson),
+				"gGallery"						=> json_encode($gGalleryJson)
+			);
+
+			$gallery_section_row = $this->db->where('gId',$gId)->get("tbl_restaurant_homepage_gallery_sections")->row();
+			if ($gallery_section_row){
+				$gGalleryArr = json_decode($gallery_section_row->gGallery);
+				foreach ($gGalleryArr as $gkey => $gvalue) {
+					if (isset($gvalue->img) && $gvalue->img !== ""){
+						if (!in_array($gvalue->img,$reuseImgList)){
+							if (file_exists(APPPATH."../assets/home_images/gallery/".$gvalue->img)){
+								unlink(APPPATH."../assets/home_images/gallery/".$gvalue->img);
+							}
+						}						
+					}
+				}
+			}
+
+			$response = $this->MODEL->updateHomeGallerySectionContent($data_content,$gId);	
+			$sort_content = array(
+				'rest_id'		=> $rest_id,
+				'section_id'	=> $section_id,
+				'sort_num'		=> $sort_num,	
+				'section_type'	=> $section_type,	
+				'is_show_section'	=> $is_show_section,
+			);
+			$responseSort = $this->MODEL->updateHomeSectionSort($sort_content);	
+			die(json_encode(array("status"=>$response && $responseSort,"is_show"=>$_FILES["home_gallery_img"] )));
 		}
 		public function hideAnnouncement(){
 			$announcement_id = $this->input->post("announcement_id");

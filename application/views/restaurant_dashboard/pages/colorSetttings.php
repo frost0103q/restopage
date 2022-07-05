@@ -157,6 +157,20 @@
                                 $food_info_color_alpha                  = "1";
                                 $reservation_page_bg                    = "#343a40";
                                 $reservation_page_bg_alpha              = "1";
+                                $opening_section_bg                     = "#1A282F";
+                                $opening_section_bg_alpha               = "1";
+                                $delivery_section_bg                    = "#313E45";
+                                $delivery_section_bg_alpha              = "1";
+                                $pickup_section_bg                      = "#1A282F";
+                                $pickup_section_bg_alpha                = "1";
+                                $opening_section_heading_color          = "#FFFDFD";
+                                $opening_section_heading_color_alpha    = "1";
+                                $opening_section_color                  = $white_color;
+                                $opening_section_color_alpha            = "1";
+                                $opening_section_today_color            = "#FF1010";
+                                $opening_section_today_color_alpha      = "1";
+                                $home_service_section_bg                = "#200202";
+                                $home_service_section_bg_alpha          = "0.36";
 
                                 $color_settings = json_decode($restDetails->color_settings);
                                 
@@ -465,7 +479,59 @@
                                         <input class="form-control col-3" id="alp21" value="<?=isset($color_settings->reservation_page_bg_alpha) ? $color_settings->reservation_page_bg_alpha : $reservation_page_bg_alpha ?>" name="reservation_page_bg_alpha">
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
+                            <hr>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Opening Hours')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Background')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->opening_section_bg) ? $color_settings->opening_section_bg : $opening_section_bg ?>" name="opening_section_bg" data-jscolor="{alphaElement:'#secp1'}">
+                                        <input class="form-control col-3" id="secp1" value="<?=isset($color_settings->opening_section_bg_alpha) ? $color_settings->opening_section_bg_alpha : $opening_section_bg_alpha ?>" name="opening_section_bg_alpha">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Delivery Hours')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Background')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->delivery_section_bg) ? $color_settings->delivery_section_bg : $delivery_section_bg ?>" name="delivery_section_bg" data-jscolor="{alphaElement:'#secp2'}">
+                                        <input class="form-control col-3" id="secp2" value="<?=isset($color_settings->delivery_section_bg_alpha) ? $color_settings->delivery_section_bg_alpha : $delivery_section_bg_alpha ?>" name="delivery_section_bg_alpha">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Pickup Hours')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Background')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->pickup_section_bg) ? $color_settings->pickup_section_bg : $pickup_section_bg ?>" name="pickup_section_bg" data-jscolor="{alphaElement:'#secp3'}">
+                                        <input class="form-control col-3" id="secp3" value="<?=isset($color_settings->pickup_section_bg_alpha) ? $color_settings->pickup_section_bg_alpha : $pickup_section_bg_alpha ?>" name="pickup_section_bg_alpha">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Opening Hours')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->opening_section_color) ? $color_settings->opening_section_color : $opening_section_color ?>" name="opening_section_color" data-jscolor="{alphaElement:'#secp4'}">
+                                        <input class="form-control col-3" id="secp4" value="<?=isset($color_settings->opening_section_color_alpha) ? $color_settings->opening_section_color_alpha : $opening_section_color_alpha ?>" name="opening_section_heading_color_alpha">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Opening Hours')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Heading')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->opening_section_heading_color) ? $color_settings->opening_section_heading_color : $opening_section_heading_color ?>" name="opening_section_heading_color" data-jscolor="{alphaElement:'#secp5'}">
+                                        <input class="form-control col-3" id="secp5" value="<?=isset($color_settings->opening_section_heading_color_alpha) ? $color_settings->opening_section_heading_color_alpha : $opening_section_heading_color_alpha ?>" name="opening_section_heading_color_alpha">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Opening Hours')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Today')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->opening_section_today_color) ? $color_settings->opening_section_today_color : $opening_section_today_color ?>" name="opening_section_today_color" data-jscolor="{alphaElement:'#secp6'}">
+                                        <input class="form-control col-3" id="secp6" value="<?=isset($color_settings->opening_section_today_color_alpha) ? $color_settings->opening_section_today_color_alpha : $opening_section_today_color_alpha ?>" name="opening_section_today_color_alpha">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 px-sm-5">
+                                    <label><?= $this->lang->line('Homepage')?> <?= $this->lang->line('Service')?> <?= $this->lang->line('Section')?> <?= $this->lang->line('Background')?> <?= $this->lang->line('Color')?></label>
+                                    <div class="row">
+                                        <input class="form-control col-9" value="<?=isset($color_settings->home_service_section_bg) ? $color_settings->home_service_section_bg : $home_service_section_bg ?>" name="home_service_section_bg" data-jscolor="{alphaElement:'#secp7'}">
+                                        <input class="form-control col-3" id="secp7" value="<?=isset($color_settings->home_service_section_bg_alpha) ? $color_settings->home_service_section_bg_alpha : $home_service_section_bg_alpha ?>" name="home_service_section_bg_alpha">
+                                    </div>
+                                </div>
+                            </div>                            
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 px-sm-5">
                                     <div class="row">

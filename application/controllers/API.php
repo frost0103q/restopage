@@ -5740,6 +5740,7 @@
 		public function rearrangeSortHomeSection(){
 			$rest_id = $this->input->post('rest_id');
 			$section_id = $this->input->post('section_id');
+			$section_type = $this->input->post('section_type');
 			$des_section_id = $this->input->post('des_section_id');
 			$sort_id = $this->input->post('sort_id');
 			$sort_type = $this->input->post('sort_type');
@@ -5749,6 +5750,7 @@
 				$pre_data = array(
 					'rest_id'=>$rest_id,
 					'section_id'=>$des_section_id,
+					'section_type'=>$section_type,
 					'sort_num'=>$sort_id,
 				);
 				if ($pre_section = $this->db->where('rest_id',$rest_id)->where('section_id',$des_section_id)->get($table)->row()){
@@ -5761,6 +5763,7 @@
 				$next_data = array(
 					'rest_id'=>$rest_id,
 					'section_id'=>$des_section_id,
+					'section_type'=>$section_type,
 					'sort_num'=>$sort_id,
 				);
 				if ($next_section = $this->db->where('rest_id',$rest_id)->where('section_id',$des_section_id)->get($table)->row()){

@@ -13,8 +13,12 @@
                             <input type="hidden" name="what_setting" value = "slider">
                             <section>
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3 d-flex justify-content-between title-bar">
-                                        <?= $this->lang->line("Page Sliders")?>
+                                    <div class="card-header py-3 d-flex align-items-center title-bar">
+                                        <label class="j-switch">
+                                            <input type="checkbox" name = "is_show_slider" id ="slider_section_option_slider" <?=( (isset($page_content->is_show_slider) && $page_content->is_show_slider == 1) ? "checked" : "" ) ?>>
+                                            <span class="j-slider round"></span>
+                                        </label>
+                                        <span class="ml-2"><?= $this->lang->line("Page Sliders")?></span>
                                     </div>
                                     <div class="card-body update-image">
                                         <div class="form-group row mt-5">
@@ -101,7 +105,15 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                                
+                                        <div class="mb-3 d-flex align-items-center title-bar">
+                                            <label class="j-switch">
+                                                <input type="checkbox" name = "is_show_search_on_slider" id="slider_section_option_search" <?=( (isset($page_content->is_show_slider) && $page_content->is_show_slider == 1) ? "" : "checked" ) ?>>
+                                                <span class="j-slider round"></span>
+                                            </label>
+                                            <span class="ml-3">Delivery / Pickup Search on Slider</span>
+                                        </div>
+
+                                        <div class="slider-text-section">
                                         <?php
                                             $slider_index = 0; 
                                             foreach ($sliders as $skey => $slider) { 
@@ -150,6 +162,7 @@
                                                     </div>
                                                 </div>
                                         <?php } ?>
+                                        </div>
                                         <div class="col-sm-12 mx-auto mb-3 mt-md-5 mt-3 mb-sm-0">
                                             <input type="submit" name="" value="<?= $this->lang->line('SAVE')?>" class="btn btn-danger btn-user btn-block submit-btn">
                                         </div>

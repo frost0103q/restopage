@@ -525,4 +525,5 @@ $lang["Delivery Section"] = "Delivery Section";
 $lang["Announcement Section"] = "Announcement Section";
 $lang["Jobs Section"] = "Jobs Section";
 $lang["Select New Section Type"] = "Select New Section Type";
+$lang["Today"] = "Today";
 ?>

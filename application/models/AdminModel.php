@@ -538,18 +538,38 @@
 			$table = "tbl_restaurant_homepage_text_sections";
 			if($old_row = $this->db->where("sId",$sId)->get($table)->row()){
 				if ($data['sType'] == 3){
-	
-				}else{
-					if (isset($old_row->sImage) && isset($data["sImage"])){
-						$old_image = $old_row->sImage;
-						if (file_exists (base_url("assets/home_images/".$old_image)))
-						unlink (base_url("assets/home_images/".$old_image));
-					}
-					if($this->db->where("rest_id",$rest_id)->update($table,$data)){
+					if($this->db->where("sId",$sId)->update($table,$data)){
 						return 1;
 					}else{
 						return 0;
 					}
+				}else{
+					if (isset($old_row->sImage) && isset($data["sImage"]) &&  "" !== $data["sImage"]){
+						$old_image = $old_row->sImage;
+						if (file_exists (base_url("assets/home_images/".$old_image)))
+						unlink (base_url("assets/home_images/".$old_image));
+					}
+					if($this->db->where("sId",$sId)->update($table,$data)){
+						return 1;
+					}else{
+						return 0;
+					}
+				}
+			}else{
+				if($this->db->insert($table,$data)){
+					return 1;
+				}else{
+					return 0;
+				}
+			}
+		}
+		public function updateHomeGallerySectionContent($data,$gId){
+			$table = "tbl_restaurant_homepage_gallery_sections";
+			if($old_row = $this->db->where("gId",$gId)->get($table)->row()){
+				if($this->db->where("gId",$gId)->update($table,$data)){
+					return 1;
+				}else{
+					return 0;
 				}
 			}else{
 				if($this->db->insert($table,$data)){
